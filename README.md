@@ -41,7 +41,7 @@ public function display($key, $value)
 Can be easily called from anywhere in your code
 
 ```php
-if (SubSiteConfig::display('DisplayOn', 'values')) {
+if (SubSiteConfig::display('ClassName', 'display')) {
     //Do something
 }
 ```
@@ -49,8 +49,8 @@ if (SubSiteConfig::display('DisplayOn', 'values')) {
 What your module _config.yml might contain
 
 ```
-DisplayOn:
-  values:
+ClassName:
+  display:
    - SUBSITE_SOMETHING_1
    - SUBSITE_SOMETHING_2
    - SUBSITE_SOMETHING_3
@@ -69,7 +69,7 @@ class ExampleModel extends ModelAdmin
 {
     public function subsiteCMSShowInMenu()
     {
-        if (SubSiteConfig::display('DisplayOn', 'values')) {
+        if (SubSiteConfig::display('ClassName', 'display')) {
             return true;
         } else {
             return false;
@@ -85,7 +85,7 @@ class ExamplePage extends Page {
 
  public function updateCMSFields(FieldList $fields)
     {
-        if (SubSiteConfig::display('DisplayOn', 'values')) {
+        if (SubSiteConfig::display('ClassName', 'display')) {
 
             $fields = parent::getCMSFields();
 
