@@ -15,6 +15,7 @@
 class SubSiteConfig extends DataExtension implements PermissionProvider
 {
 
+
     private static $db = array(
         'SubSiteConstant' => 'Varchar(255)',
     );
@@ -27,7 +28,7 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
      * @param string $value Array value set under the name
      * @return bool
      */
-    public function display($key, $value)
+	public static function display($key, $value)
     {
         if (in_array(SiteConfig::current_site_config()->SubSiteConstant, Config::inst()->get($key, $value))) {
             //Display to the current subsite
