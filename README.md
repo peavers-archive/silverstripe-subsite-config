@@ -26,7 +26,7 @@ A data extension on SiteConfig adds a tab to allow the developer to set a consta
 SubSiteConfig has a simple method called display which accepts two values
 
 ```php
-public function display($key, $value)
+public static function display($key, $value)
 {
     if (in_array(SiteConfig::current_site_config()->owner->SubSiteConstant, Config::inst()->get($key, $value))) {
         //Display to the current subsite
