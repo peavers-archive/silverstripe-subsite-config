@@ -29,7 +29,7 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
      */
     public function display($key, $value)
     {
-        if (in_array(SiteConfig::current_site_config()->owner->SubSiteConstant, Config::inst()->get($key, $value))) {
+        if (in_array(SiteConfig::current_site_config()->SubSiteConstant, Config::inst()->get($key, $value))) {
             //Display to the current subsite
             return true;
         } else {
