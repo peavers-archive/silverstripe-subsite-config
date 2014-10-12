@@ -31,7 +31,6 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
         $config = Config::inst()->get($key, $value);
 
         if (Subsite::currentSubsite() && in_array($subSiteConstant, $config)) {
-            var_dump(SubSite::currentSubsite());
             return true;
         } else {
             return false;
