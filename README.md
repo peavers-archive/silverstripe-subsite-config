@@ -26,16 +26,17 @@ A data extension on SiteConfig adds a tab to allow the developer to set a consta
 SubSiteConfig has a simple method called display which accepts two values
 
 ```php
-public static function display($key, $value)
-{
-    if (in_array(SiteConfig::current_site_config()->owner->SubSiteConstant, Config::inst()->get($key, $value))) {
-        //Display to the current subsite
-        return true;
-    } else {
-        //Don't display to the current subsite
-        return false;
+    public static function display($key, $value)
+    {
+        $subSiteConstant = SiteConfig::current_site_config()->SubSiteConstant;
+        $config = Config::inst()->get($key, $value);
+
+        if (Subsite::currentSubsite() && in_array($subSiteConstant, $config)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-}
 ```
 
 Can be easily called from anywhere in your code
