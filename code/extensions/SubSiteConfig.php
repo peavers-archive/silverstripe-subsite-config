@@ -15,10 +15,7 @@
 class SubSiteConfig extends DataExtension implements PermissionProvider
 {
 
-
-    private static $db = array(
-        'SubSiteConstant' => 'Varchar(255)',
-    );
+    private static $db = array('SubSiteConstant' => 'Varchar(255)');
 
     /**
      *
@@ -28,13 +25,15 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
      * @param string $value Array value set under the name
      * @return bool
      */
-	public static function display($key, $value)
+    public static function display($key, $value)
     {
-        if (in_array(SiteConfig::current_site_config()->SubSiteConstant, Config::inst()->get($key, $value))) {
-            //Display to the current subsite
+        $subSiteConstant = SiteConfig::current_site_config()->SubSiteConstant;
+        $config = Config::inst()->get($key, $value);
+
+        if (Subsite::currentSubsite() && in_array($subSiteConstant, $config)) {
+            var_dump(SubSite::currentSubsite());
             return true;
         } else {
-            //Don't display to the current subsite
             return false;
         }
     }
@@ -61,7 +60,7 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
     {
         return array(
             'SUBSITE_DEVELOPER_EDIT' => array(
-                'name'     => 'Edit developer settings',
+                'name' => 'Edit developer settings',
                 'category' => 'Developer Specific Settings'
             ),
         );
