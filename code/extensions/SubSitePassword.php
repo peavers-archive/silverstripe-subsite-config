@@ -1,15 +1,15 @@
 <?php
 
+/**
+ * Class SubSitePassword
+ *
+ * Provides settings in the CMS to enable basic password authentication
+ */
 class SubSitePassword extends DataExtension
 {
     private static $db = array(
         'RequirePassword' => "Enum(array('enable', 'disable'))"
     );
-
-    public function canEdit($member = null)
-    {
-        return Permission::check('SUBSITE_DEVELOPER_EDIT');
-    }
 
     public function updateCMSFields(FieldList $fields)
     {
@@ -22,8 +22,17 @@ class SubSitePassword extends DataExtension
     }
 }
 
+/**
+ * Class ControllerExtension
+ */
 class ControllerExtension extends Extension
 {
+    /**
+     *
+     * If enabled, calls the Silverstripe BasicAuth function on any page load.
+     *
+     * @return array
+     */
     public function index()
     {
         if (SiteConfig::current_site_config()->RequirePassword == "enable") {

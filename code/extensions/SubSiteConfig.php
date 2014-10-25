@@ -38,16 +38,19 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
                 ->setDescription('Used as a guarantee for module loading. <a href="https://gitlab.cwp.govt.nz/modules/subsite-config/wikis/SubSiteConfig" target="_blank">Details here</a>'),
         ));
 
+        // Make sure only a developer can change this value
         if (!Permission::check('SUBSITE_DEVELOPER_EDIT')) {
             $fields->makeFieldReadonly('SubSiteConstant');
         }
     }
 
-    public function canEdit($member = null)
-    {
-        return Permission::check('SUBSITE_DEVELOPER_EDIT');
-    }
-
+    /**
+     *
+     * Changing the constant set by the developer can cause havoc on a site. Its important this is set once and not modified by a site admin/content editor without
+     * explicit instructions from the sites developer
+     *
+     * @return array
+     */
     public function providePermissions()
     {
         return array(
@@ -56,6 +59,11 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
                 'category' => 'Developer Specific Settings'
             ),
         );
+    }
+
+    public function canEdit($member = null)
+    {
+        return Permission::check('SUBSITE_DEVELOPER_EDIT');
     }
 
 }
