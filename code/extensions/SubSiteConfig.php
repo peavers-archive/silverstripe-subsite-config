@@ -34,8 +34,8 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
     {
         $fields->addFieldsToTab('Root.SubsiteConfig', array(
             TextField::create('SubSiteConstant', 'Subsite Constant')
-                ->setAttribute('placeholder', 'SOMETHING_SOMETHING_ID')
-                ->setDescription('Used as a guarantee for module loading. <a href="https://moe-webservices.atlassian.net/wiki/display/EV/Subsites" target="_blank">Details here</a>'),
+                ->setAttribute('placeholder', 'SUBSITE_NAME')
+                ->setDescription('Used as a guarantee for module loading. <a href="https://gitlab.cwp.govt.nz/modules/subsite-config/wikis/SubSiteConfig" target="_blank">Details here</a>'),
         ));
 
         if (!Permission::check('SUBSITE_DEVELOPER_EDIT')) {
