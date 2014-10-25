@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Chris
- * Date: 10/25/2014
- * Time: 4:31 PM
- */
 class SubSitePassword extends DataExtension
 {
     private static $db = array(
@@ -23,7 +17,7 @@ class SubSitePassword extends DataExtension
 
             OptionsetField::create("RequirePassword", "Require password")
                 ->setSource(array("enable" => "Enable password", "disable" => "Disable password"))
-                ->setDescription("<strong>Note:</strong> This should not be used for secure services.")
+                ->setDescription("<strong>Note:</strong> This is a basic login function only.")
         ));
     }
 }

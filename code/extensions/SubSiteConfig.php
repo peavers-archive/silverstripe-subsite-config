@@ -1,13 +1,6 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: turnerc
- * Date: 10/09/14
- * Time: 10:51 AM
- */
-
-/**
  * Class SubSiteConfig
  *
  * Requires users to have developer access to modify. Removes the chance of CMS administrators changing values.

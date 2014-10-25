@@ -1,4 +1,4 @@
-# Subsite Config Extension
+# Subsite Extensions
 
 ## Maintainer
 
@@ -10,93 +10,19 @@ master: SilverStripe 3.1.x
 
 ## Installation
 
-1. Via composer:
+1. Via composer
 1. Rebuild database schema (dev/build?flush=1)
 
 ## Features
 
-- Creates a new field editable by those in a 'Developer' group in SiteConfig, $SubSiteConstant
-- Provides a simple method to compare $SubSiteConstant with values set in _config.yml
-
-## Details
-
 ### SubSiteConfig
+Restricts viewing of settigns designed for a specific subsite.
 
-A data extension on SiteConfig adds a tab to allow the developer to set a constant for their subsite. In order to be able to set this constant you must be a part of the Developer group on that instance.
-SubSiteConfig has a simple method called display which accepts two values
+### SubSitePassword
+Enables basic authentication on each subsite. This is useful for when moving into production but not ready for release.
 
-```php
-    public static function display($key, $value)
-    {
-        $subSiteConstant = SiteConfig::current_site_config()->SubSiteConstant;
-        $config = Config::inst()->get($key, $value);
+### SubSiteDataObject
+Keeps dataobjects to their own subsites. This may have been made obsolete in recent SubSite module updates from Silverstripe.
 
-        if (Subsite::currentSubsite() && in_array($subSiteConstant, $config)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-```
-
-Can be easily called from anywhere in your code
-
-```php
-if (SubSiteConfig::display('ClassName', 'display')) {
-    //Do something
-}
-```
-
-What your module _config.yml might contain
-
-```
-ClassName:
-  display:
-   - SUBSITE_SOMETHING_1
-   - SUBSITE_SOMETHING_2
-   - SUBSITE_SOMETHING_3
-   - SUBSITE_SOMETHING_4
-   - SUBSITE_SOMETHING_5
-```
-
-In each *SiteConfig -> Subsite Config -> Subsite Constant* field for your subsites simple enter SUBSITE_SOMETHING_*n*
-
-## Restricting viewable items
-
-### Model Admin
-
-```php
-class ExampleModel extends ModelAdmin
-{
-    public function subsiteCMSShowInMenu()
-    {
-        if (SubSiteConfig::display('ClassName', 'display')) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-```
-
-### Tabs/Fields and other settings
-
-```php
-class ExamplePage extends Page {
-
- public function updateCMSFields(FieldList $fields)
-    {
-        if (SubSiteConfig::display('ClassName', 'display')) {
-
-            $fields = parent::getCMSFields();
-
-            $fields->addFieldsToTab("Root.Main", array(
-                TextField::create('Example', 'Example text'),
-            ));
-
-            return $fields;
-        }
-    }
-}
-```
-
+## Further details
+See https://gitlab.cwp.govt.nz/modules/subsite-config/wikis/pages for details
