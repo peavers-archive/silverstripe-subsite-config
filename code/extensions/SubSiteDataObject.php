@@ -1,17 +1,26 @@
 <?php
 
-class SubSiteDataObject extends DataExtension
+/**
+ * Class SubSiteDataObject
+ */
+class SubsiteDataObject extends DataExtension
 {
 
     static $db = array(
         'SubsiteID' => 'Int'
     );
 
+    /**
+     * @param FieldList $fields
+     */
     function updateCMSFields(FieldList $fields)
     {
         $fields->removebyName('SubsiteID');
     }
 
+    /**
+     * @return null
+     */
     function getSubsite()
     {
         if (class_exists('Subsite')) {
@@ -19,12 +28,18 @@ class SubSiteDataObject extends DataExtension
         } else return null;
     }
 
+    /**
+     * @param DataObject $subsite
+     */
     function setSubsite(DataObject $subsite)
     {
         if ($subsite->ClassName === 'Subsite')
             $this->owner->SubsiteID = $subsite->ID;
     }
 
+    /**
+     *
+     */
     function onBeforeWrite()
     {
         if (!$this->owner->SubsiteID && class_exists('Subsite')) {
@@ -32,6 +47,10 @@ class SubSiteDataObject extends DataExtension
         }
     }
 
+    /**
+     * @param SQLQuery $query
+     * @param DataQuery $dataQuery
+     */
     function augmentSQL(SQLQuery &$query, DataQuery &$dataQuery = null)
     {
         $baseTable = ClassInfo::baseDataClass($dataQuery->dataClass());

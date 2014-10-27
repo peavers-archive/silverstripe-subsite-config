@@ -14,6 +14,7 @@ master: SilverStripe 3.1.x
 1. Rebuild database schema (dev/build?flush=1)
 
 ## Features
+A collection of extensions that further subsites when working within the Ministry of Education instances. 
 
 ### SubSiteConfig
 Restricts viewing of settigns designed for a specific subsite.
