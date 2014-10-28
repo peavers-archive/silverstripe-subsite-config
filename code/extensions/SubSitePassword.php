@@ -15,9 +15,9 @@ class SubSitePassword extends DataExtension
     {
         $fields->addFieldsToTab('Root.SubsiteConfig', array(
 
-            OptionsetField::create("RequirePassword", "Require password")
+            OptionsetField::create("RequirePassword", "Require password:")
                 ->setSource(array("enable" => "Enable password", "disable" => "Disable password"))
-                ->setDescription("<strong>Note:</strong> This is a basic login function only.")
+                ->setDescription("This will only display in a live enviroment. The enviroment is currently: <strong>" . Director::get_environment_type() . "</strong>")
         ));
     }
 }
