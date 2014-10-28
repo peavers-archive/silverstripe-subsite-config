@@ -29,13 +29,13 @@ class ControllerExtension extends Extension
 {
     /**
      *
-     * If enabled, calls the Silverstripe BasicAuth function on any page load.
+     * If enabled, calls the Silverstripe BasicAuth function on any page load. Regardless of setting, only show in production.
      *
      * @return array
      */
     public function index()
     {
-        if (SiteConfig::current_site_config()->RequirePassword == "enable") {
+        if (SiteConfig::current_site_config()->RequirePassword == "enable" && Director::isLive()) {
             BasicAuth::requireLogin();
         }
 
