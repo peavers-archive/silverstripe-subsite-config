@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class SubSiteDataObject
+ * Class SubsiteDataObject
  */
 class SubsiteDataObject extends DataExtension
 {
