@@ -2,6 +2,7 @@
 
 /**
  * Class SubsiteDataObject
+ *
  */
 class SubsiteDataObject extends DataExtension
 {
