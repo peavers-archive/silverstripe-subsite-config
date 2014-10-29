@@ -8,15 +8,15 @@
 class SubSitePassword extends DataExtension
 {
     private static $db = array(
-        'RequirePassword' => "Enum(array('enable', 'disable'))"
+        'PasswordSetting' => 'Int'
     );
 
     public function updateCMSFields(FieldList $fields)
     {
         $fields->addFieldsToTab('Root.SubsiteConfig', array(
 
-            OptionsetField::create("RequirePassword", "Require password:")
-                ->setSource(array("disable" => "Disable password", "enable" => "Enable password"))
+            OptionsetField::create("PasswordSetting", "Require password:")
+                ->setSource(array(0 => "Disable password", 1 => "Enable password"))
                 ->setDescription("This will only display in a live enviroment due to issues with external debugging tools. The enviroment is currently: <strong>" . Director::get_environment_type() . "</strong>")
         ));
     }
@@ -35,7 +35,7 @@ class ControllerExtension extends Extension
      */
     public function index()
     {
-        if (SiteConfig::current_site_config()->RequirePassword == "enable" && Director::isLive()) {
+        if (SiteConfig::current_site_config()->RequirePassword == 1 && Director::isLive()) {
             BasicAuth::requireLogin();
         }
 
