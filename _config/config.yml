@@ -5,3 +5,6 @@ SiteConfig:
   extensions:
    - SubSiteConfig
    - SubSitePassword
+Page:
+  extensions:
+   - ControllerExtension
