@@ -17,7 +17,7 @@ master: SilverStripe 3.1.x
 A collection of extensions that further subsites when working within the Ministry of Education instances. 
 
 ### SubSiteConfig
-Restricts viewing of settigns designed for a specific subsite.
+Restricts viewing of settings designed for a specific subsite.
 
 ### SubSitePassword
 Enables basic authentication on each subsite. This is useful for when moving into production but not ready for release.
