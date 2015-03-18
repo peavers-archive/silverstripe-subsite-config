@@ -1,7 +1,6 @@
 ---
 Name: subsite-config
 ---
-SiteConfig:
+Subsite:
   extensions:
    - SubSiteConfig
-   - SubSitePassword

@@ -8,7 +8,9 @@
 class SubSiteConfig extends DataExtension implements PermissionProvider
 {
 
-    private static $db = array('SubSiteConstant' => 'Varchar(255)');
+    private static $db = array(
+        'SubSiteConstant' => 'Varchar(255)'
+    );
 
     /**
      *
@@ -32,7 +34,7 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
 
     public function updateCMSFields(FieldList $fields)
     {
-        $fields->addFieldsToTab('Root.SubsiteConfig', array(
+        $fields->addFieldsToTab("Root.AdditionalSettings", array(
             TextField::create('SubSiteConstant', 'Subsite Constant')
                 ->setAttribute('placeholder', 'SUBSITE_NAME')
                 ->setDescription('Used as a guarantee for module loading. <a href="https://gitlab.cwp.govt.nz/modules/subsite-config/wikis/SubSiteConfig" target="_blank">Details here</a>'),
@@ -42,6 +44,8 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
         if (!Permission::check('SUBSITE_DEVELOPER_EDIT')) {
             $fields->makeFieldReadonly('SubSiteConstant');
         }
+
+        return $fields;
     }
 
     /**
@@ -55,7 +59,7 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
     {
         return array(
             'SUBSITE_DEVELOPER_EDIT' => array(
-                'name' => 'Edit developer settings',
+                'name'     => 'Edit developer settings',
                 'category' => 'Developer Specific Settings'
             ),
         );

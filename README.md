@@ -19,9 +19,6 @@ A collection of extensions that further subsites when working within the Ministr
 ### SubSiteConfig
 Restricts viewing of settings designed for a specific subsite.
 
-### SubSitePassword
-Enables basic authentication on each subsite. This is useful for when moving into production but not ready for release.
-
 ### SubSiteDataObject
 Keeps dataobjects to their own subsites. This may have been made obsolete in recent SubSite module updates from Silverstripe.
 
