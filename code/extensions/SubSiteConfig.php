@@ -25,11 +25,7 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
         $subSiteConstant = SiteConfig::current_site_config()->SubSiteConstant;
         $config = Config::inst()->get($key, $value);
 
-        if (Subsite::currentSubsite() && in_array($subSiteConstant, $config)) {
-            return true;
-        } else {
-            return false;
-        }
+        return Subsite::currentSubsite() && in_array($subSiteConstant, $config) ? true : false;
     }
 
     public function updateCMSFields(FieldList $fields)
