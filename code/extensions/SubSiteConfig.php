@@ -65,5 +65,4 @@ class SubSiteConfig extends DataExtension implements PermissionProvider
     {
         return Permission::check('SUBSITE_DEVELOPER_EDIT');
     }
-
 }
